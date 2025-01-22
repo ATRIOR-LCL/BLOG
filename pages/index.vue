@@ -1,6 +1,6 @@
 <template>
   <article>
-    <img class="bg-1" src="~/assets/imgs/xd.jpg" alt="" />
+    <img class="bg-1" src="~/assets/imgs/xd.png" alt="" />
     <div class="mask"></div>
     <!-- <div class="mask-login"></div> -->
     <header>
