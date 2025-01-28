@@ -1,10 +1,5 @@
 <template>
-<NuxtPage/>
+  <keep-alive>
+    <NuxtPage />
+  </keep-alive>
 </template>
-
-<script setup>
-
-</script>
-
-<style>
-</style>

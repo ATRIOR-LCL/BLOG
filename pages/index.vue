@@ -134,8 +134,8 @@ onBeforeUnmount(() => {
 @import url("../assets/style/index.less");
 
 .navSctive {
-  opacity: 1;
-  filter: blur(0);
+  opacity: 1 !important;
+  filter: blur(0) !important; 
 }
 
 .headActive {
