@@ -13,7 +13,7 @@
       <LoginFace />
       <div class="title">
         <img src="/imgs/code.png" alt="" class="code" />
-        <h1 class="s_title">atrior's Blog...</h1>
+        <h1 class="s_title">a<span>t</span>rio<span>r'</span>s B<span>l</span>og<span>...</span></h1>
       </div>
       <h2 class="slogan">
         判断生活是否值得经历，本身就是在回答哲学的基本问题。
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-const showMouse = ref<boolean>(false)
+const showMouse = ref<boolean>(false);
 const useRem = () => {
   let w = document.documentElement.clientWidth;
   let size = w / 10 + "px";
@@ -45,6 +45,8 @@ useHead({
   ],
   titleTemplate: "%s 首页",
 });
+
+
 onMounted(() => {
   useRem();
   window.addEventListener("resize", useRem);
@@ -64,47 +66,55 @@ onMounted(() => {
       }
     }
 
-    if(scrollY> 900){
-      showMouse.value=true
-    }else{
-      showMouse.value = false
+    if (scrollY > 900) {
+      showMouse.value = true;
+    } else {
+      showMouse.value = false;
     }
   };
   window.addEventListener("scroll", reveal);
 
-  const codeAnim = new IntersectionObserver((lists) => {
-    lists.forEach((list) => {
-      if (list.isIntersecting) {
-        console.log("yes");
-        list.target.classList.add("codeActive");
-      } else {
-        list.target.classList.remove("codeActive");
-      }
-    });
-  },{
-    threshold: .5
-  });
+  const codeAnim = new IntersectionObserver(
+    (lists) => {
+      lists.forEach((list) => {
+        if (list.isIntersecting) {
+          console.log("yes");
+          list.target.classList.add("codeActive");
+        } else {
+          list.target.classList.remove("codeActive");
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
 
   const code: HTMLElement = document.querySelector(".code") as HTMLElement;
   codeAnim.observe(code);
   const slogan: HTMLElement = document.querySelector(".slogan") as HTMLElement;
-  const titleAnim = new IntersectionObserver((lists) => {
-    lists.forEach((list) => {
-      if (list.isIntersecting) {
-        slogan.classList.add("navSctive");
-        list.target.classList.add("titleActive");
-      } else {
-        list.target.classList.remove("titleActive");
-        slogan.classList.remove("navSctive");
-      }
-    });
-  },{
-    threshold: .5
-  });
+  const titleAnim = new IntersectionObserver(
+    (lists) => {
+      lists.forEach((list) => {
+        if (list.isIntersecting) {
+          slogan.classList.add("navSctive");
+          list.target.classList.add("titleActive");
+        } else {
+          list.target.classList.remove("titleActive");
+          slogan.classList.remove("navSctive");
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
   const title: HTMLElement = document.querySelector(".s_title") as HTMLElement;
 
   titleAnim.observe(title);
 });
+
+
 const clickOutSide = (event: MouseEvent): void => {
   let logout: HTMLElement = document.querySelector(
     ".logout-face"
@@ -113,6 +123,8 @@ const clickOutSide = (event: MouseEvent): void => {
     logout.classList.remove("loginActive");
   }
 };
+
+
 onBeforeUnmount(() => {
   document.removeEventListener("click", clickOutSide);
 });

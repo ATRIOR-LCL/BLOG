@@ -2,7 +2,7 @@
   <div class="article">
     <h1>About Me</h1>
     <div class="article_first">
-      <div class="focus1">
+      <div class="focus1" @click="toArticle1">
         <img src="../assets/imgs/focus1.png" alt="" />
         <footer>
           <p class="f_title">数据结构与算法实训 😳</p>
@@ -64,6 +64,11 @@
 </template>
 
 <script setup lang="ts">
+
+const toArticle1 = ()=> {
+  navigateTo('/article1')
+}
+
 onMounted(() => {
   const looks: NodeListOf<HTMLElement> = document.querySelectorAll(".ss");
   const articleAnim = new IntersectionObserver(
