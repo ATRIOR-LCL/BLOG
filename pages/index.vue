@@ -13,7 +13,9 @@
       <LoginFace />
       <div class="title">
         <img src="/imgs/code.png" alt="" class="code" />
-        <h1 class="s_title">a<span>t</span>rio<span>r'</span>s B<span>l</span>og<span>...</span></h1>
+        <h1 class="s_title">
+          a<span>t</span>rio<span>r'</span>s B<span>l</span>og<span>...</span>
+        </h1>
       </div>
       <h2 class="slogan">
         判断生活是否值得经历，本身就是在回答哲学的基本问题。
@@ -31,7 +33,7 @@
 const showMouse = ref<boolean>(false);
 const useRem = () => {
   let w = document.documentElement.clientWidth;
-  let size = w / 10 + "px";
+  let size = w / 10 < 60 ? 60 + "px" : w / 10 + "px";
   document.documentElement.style.fontSize = size;
 };
 
@@ -46,11 +48,12 @@ useHead({
   titleTemplate: "%s 首页",
 });
 
-
+onBeforeMount(() => {
+  window.addEventListener("load", useRem);
+  window.addEventListener("resize", useRem);
+});
 onMounted(() => {
   useRem();
-  window.addEventListener("resize", useRem);
-
   document.addEventListener("click", clickOutSide);
 
   const reveal = () => {
@@ -114,7 +117,6 @@ onMounted(() => {
   titleAnim.observe(title);
 });
 
-
 const clickOutSide = (event: MouseEvent): void => {
   let logout: HTMLElement = document.querySelector(
     ".logout-face"
@@ -123,7 +125,6 @@ const clickOutSide = (event: MouseEvent): void => {
     logout.classList.remove("loginActive");
   }
 };
-
 
 onBeforeUnmount(() => {
   document.removeEventListener("click", clickOutSide);
@@ -135,7 +136,7 @@ onBeforeUnmount(() => {
 
 .navSctive {
   opacity: 1 !important;
-  filter: blur(0) !important; 
+  filter: blur(0) !important;
 }
 
 .headActive {
